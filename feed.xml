@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
-    <title>OSINT and other nonsense</title>
+    <title>OSINT and other nonsense by Jules</title>
     <link href="https://jules-lewis.github.io/blog/feed.xml" rel="self" />
     <link href="https://jules-lewis.github.io/blog" />
-    <updated>2025-01-28T00:47:04+00:00</updated>
+    <updated>2025-01-28T01:00:58+00:00</updated>
     <author>
         <name>Jules</name>
     </author>
@@ -30,10 +30,13 @@
         <content type="html">
             <![CDATA[
                     <p><img src="https://jules-lewis.github.io/blog/media/posts/1/oq24-01-planes-2.jpg" class="type:primaryImage" alt="" /></p>
-                <p><em>Returning to The Seint’s puzzling OSINT CTF for another year</em></p><p>I have previously blogged about solving The Seint’s OSINT challenges <a href="https://jules-lewis.blogspot.com/2024/01/back-on-seints-trail-2023-osint.html">over on Blogger</a>, but wanted to try out blogging in Markdown, so will be publishing on GitHub Pages this year. If I end up preferring this approach, I may start moving my old posts here too.</p><h4 id="how-does-it-work">How does it work?</h4>
-<p>The challenge simply involves opening a nested series of zipped files, with the password for each zip being an MD5 hash of the answer to the previous level. You can find the starting zip over at the challenge’s repo <strong><a href="https://github.com/seintpl/osintquiz">here</a></strong>.</p><p>In order to get us going, The SEINT says that the password for the first zip is the MD5 hash of the word <code>start</code>. As we are going to be hashing a number of words, it is worth keeping a browser tab open with <a href="https://gchq.github.io/CyberChef/#recipe=MD5()&input=c3RhcnQ">CyberChef</a> running in it. </p><h4 id="spoiler-alert">Spoiler alert!</h4>
-<p>If you want to have a go at solving The SEINT’s puzzle yourself, please DON’T read on here, as this is obviously heavily spoilered. </p><h4 id="step-1">Step 1</h4>
-<p>Assuming you open the first zip file, you have a clue, an image, and a couple of files containing hints. So here’s the first clue:</p><blockquote>
+                <p><em>Returning to The Seint’s puzzling OSINT CTF for another year</em></p><p>I have previously blogged about solving The Seint’s OSINT challenges <a href="https://jules-lewis.blogspot.com/2024/01/back-on-seints-trail-2023-osint.html">over on Blogger</a>, but wanted to try out blogging in Markdown, so will be publishing on GitHub Pages this year. If I end up preferring this approach, I may start moving my old posts here too.</p><h4 id="how-does-the-challenge-work">How does the challenge work?</h4>
+<p>The challenge simply involves opening a nested series of zipped files, with the password for each zip being an MD5 hash of the answer to the previous level. You can find the starting zip over at the challenge’s repo <strong><a href="https://github.com/seintpl/osintquiz">here</a></strong>.</p><p>In order to get us going, The SEINT says that the password for the first zip is the MD5 hash of the word <code>start</code>. As we are going to be hashing a number of words, it is worth keeping a browser tab open with <a href="https://gchq.github.io/CyberChef/#recipe=MD5()&input=c3RhcnQ">CyberChef</a> running in it. </p><pre><code>**Spoiler alert!**
+
+If you want to have a go at solving The SEINT&#39;s puzzle yourself, please DON&#39;T read on here, as this is obviously heavily spoilered. 
+</code></pre>
+<h4 id="step-1">Step 1</h4>
+<p>Assuming you open the first zip file, you have a clue, an image, and a couple of files containing hints. Here’s the first clue:</p><blockquote>
 <p>Beep! - another email arrived. A bargain sale again, a meeting reminder or maybe this time someone wanted to write to me personally about something more interesting than lower prices, new offers or another time wasting things? I looked at the screen and noticed that the new mail stayed in the Inbox folder. That could mean only two things: either my filters were failing or the message was really meant for me to read. It was the latter this time which made me smile. And when I looked at the Sender’s name, my eyes opened even more. It was an email from my friend, who’s adventures I’ve been tracking a couple of times. My friend didn’t write normal emails, oh no, but liked riddles and non-direct stories. I couldn’t do anything else but to start reading. If you would like to read and follow this adventure with me, here’s the tale:</p><p>And so the adventure ends. We have just arrived at the airport after a long and interesting journey. I took a picture here. They say you never really appreciate the adventure until it’s over. The last flight of this journey went smoothly and lasted exactly as long as it was scheduled. I personally appreciate when the airlines go by the schedule, but this time I had to stop watching a movie I always wanted to see when we were landing, I started watching it as soon as we started the flight and hoped that it would last a few minutes longer, but this time it didn’t and I will have to find out what was the meaning of ‘Rosebud’ later. And I was so close to finding it out on the plane. But this wasn’t the only plot twist during the journey, no! There were more of them. Do you want to hear them? If so, the next story is guarded by the name of the city we were flying from. Can you tell what the name is?</p><p>The password to the next step is the MD5 hash of the abovementioned city name written in lowercase.</p></blockquote>
 <p>To my mind, we first need to find out two things:</p><ul>
 <li>what is the destination airport?</li>
