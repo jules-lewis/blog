@@ -3,7 +3,7 @@
     <title>OSINT and other nonsense by Jules</title>
     <link href="https://jules-lewis.github.io/blog/feed.xml" rel="self" />
     <link href="https://jules-lewis.github.io/blog" />
-    <updated>2025-01-28T01:00:58+00:00</updated>
+    <updated>2025-01-28T01:02:42+00:00</updated>
     <author>
         <name>Jules</name>
     </author>
@@ -30,7 +30,7 @@
         <content type="html">
             <![CDATA[
                     <p><img src="https://jules-lewis.github.io/blog/media/posts/1/oq24-01-planes-2.jpg" class="type:primaryImage" alt="" /></p>
-                <p><em>Returning to The Seint’s puzzling OSINT CTF for another year</em></p><p>I have previously blogged about solving The Seint’s OSINT challenges <a href="https://jules-lewis.blogspot.com/2024/01/back-on-seints-trail-2023-osint.html">over on Blogger</a>, but wanted to try out blogging in Markdown, so will be publishing on GitHub Pages this year. If I end up preferring this approach, I may start moving my old posts here too.</p><h4 id="how-does-the-challenge-work">How does the challenge work?</h4>
+                <p><em>Returning to The Seint’s puzzling OSINT CTF for another year</em></p><p>I have previously blogged about solving The Seint’s OSINT challenges <a href="https://jules-lewis.blogspot.com/2024/01/back-on-seints-trail-2023-osint.html">over on Blogger</a>, but wanted to try out blogging in Markdown. So this year I will be publishing here on GitHub Pages. If I end up preferring this approach, I may start moving my old posts here too.</p><h4 id="how-does-the-challenge-work">How does the challenge work?</h4>
 <p>The challenge simply involves opening a nested series of zipped files, with the password for each zip being an MD5 hash of the answer to the previous level. You can find the starting zip over at the challenge’s repo <strong><a href="https://github.com/seintpl/osintquiz">here</a></strong>.</p><p>In order to get us going, The SEINT says that the password for the first zip is the MD5 hash of the word <code>start</code>. As we are going to be hashing a number of words, it is worth keeping a browser tab open with <a href="https://gchq.github.io/CyberChef/#recipe=MD5()&input=c3RhcnQ">CyberChef</a> running in it. </p><pre><code>**Spoiler alert!**
 
 If you want to have a go at solving The SEINT&#39;s puzzle yourself, please DON&#39;T read on here, as this is obviously heavily spoilered. 
