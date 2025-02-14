@@ -3,12 +3,82 @@
     <title>OSINT and other explorations</title>
     <link href="https://jules-lewis.github.io/blog/feed.xml" rel="self" />
     <link href="https://jules-lewis.github.io/blog" />
-    <updated>2025-02-11T11:42:45+00:00</updated>
+    <updated>2025-02-14T18:21:59+00:00</updated>
     <author>
         <name>Jules</name>
     </author>
     <id>https://jules-lewis.github.io/blog</id>
 
+    <entry>
+        <title>Hotelrooms and Other Strange Places 2024: #7</title>
+        <author>
+            <name>Jules</name>
+        </author>
+        <link href="https://jules-lewis.github.io/blog/hotelrooms-and-other-strange-places-2024-7.html"/>
+        <id>https://jules-lewis.github.io/blog/hotelrooms-and-other-strange-places-2024-7.html</id>
+        <media:content url="https://jules-lewis.github.io/blog/media/posts/7/oq24-32-sirkeci-2.jpg" medium="image" />
+            <category term="OSINT"/>
+            <category term="CTF"/>
+            <category term="AI"/>
+
+        <updated>2025-02-14T18:15:00+00:00</updated>
+            <summary>
+                <![CDATA[
+                        <img src="https://jules-lewis.github.io/blog/media/posts/7/oq24-32-sirkeci-2.jpg" alt="" />
+                    A different terminal from what we’re used to in OSINT&hellip;
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                    <p><img src="https://jules-lewis.github.io/blog/media/posts/7/oq24-32-sirkeci-2.jpg" class="type:primaryImage" alt="" /></p>
+                <p><em>A different terminal from what we’re used to in OSINT</em></p><hr>
+<p>This is a walkthrough of an OSINT CTF set by The SEINT in a GitHub repo you can find <strong><a href="https://github.com/seintpl/osintquiz">here</a></strong>. You can see how the challenge works, and how we solved Step 1 <a href="https://jules-lewis.github.io/blog/hotelrooms-and-other-strange-places-2024.html">at the start of the series</a>. </p><pre><code>SPOILER ALERT!
+
+If you want to have a go at solving The SEINT&#39;s puzzle yourself, please DON&#39;T read on here, as this is obviously heavily spoilered. 
+</code></pre>
+<h4 id="step-7">Step 7</h4>
+<p>We’re back to a simple text clue, and a puzzle that can be solved with some careful searching:</p><blockquote>
+<p>I just remembered something interesting, while I was thinking about my next location, let’s see if you can figure it out… When the steamship got stuck near Berlengas, Portugal, another type of transport was very dear to some of my ancestors. I might still have some old photographs about their journey somewhere… But I digress! What I wanted to let you know, is that for 94 years, with some small breaks, this city was very important transport wise! After 94 years, it was not a part of this whole adventure anymore. The only thing keeping its memories are the buildings where the adventure used to end. The architect who designed the building was actually sent by the newly formed German empire for study, but he became the man who created this historically important building.</p><p>If you find this name, remove spaces and convert it to lower case and then make MD5 hash of it, you will unlock the next part of the journey!</p></blockquote>
+<p>I’m afraid to say that this took a fair number of searches before I hit on an answer that fit all the clues.</p><p>We know we’re starting in the 1890’s because of the reference to <a href="https://jules-lewis.github.io/blog/hotelrooms-and-other-strange-places-2024-2.html">Step 2</a>. The modes of transport quickly narrowed down to rail because commercial flight would not be around for a while, and airships didn’t last 94 years. We know we’re looking for a building where an adventurous journey on this mode of transport used to end. We also have some clues about the architect.</p><p>After several iterations, the following search got me what I needed: <code>terminus designed by german architect in 1890s</code></p><p>This got me to <a href="https://en.wikipedia.org/wiki/Sirkeci_railway_station">Sirceki railway station</a> in Istanbul, where the Orient Express used to end its journey. And the station’s architect was <em>August Jasmund</em>.</p><h3 id="ai-struggles-with-this-one">AI struggles with this one.</h3>
+<p>Having solved the puzzle, I decide to see how the popular chatbots would get on. In each case, I helped out by removing the first half of the clue, the ‘digression’, and including the only valuable information that comes out of understanding the digression. Here’s the prompt I came up with:</p><pre><code>PROMPT
+
+I would like you to solve the following puzzle. Think step by step:
+
+What I wanted to let you know, is that [[from the 1890&#39;s and]] for 94 years, with some small breaks, this city was very important transport wise! After 94 years, it was not a part of this whole adventure anymore. The only thing keeping its memories are the buildings where the adventure used to end. The architect who designed the building was actually sent by the newly formed German empire for study, but he became the man who created this historically important building. 
+</code></pre>
+<p>Here are the responses I got:</p><table>
+<thead>
+<tr>
+<th>LLM</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Google Gemini 2.0 Flash Thinking Experimental</td>
+<td>“Based on the clues provided, the city you are referring to is Berlin, and the historically important building is the Anhalter Bahnhof (Anhalter Station).” The tool correctly identified the architect of this building as Franz Heinrich Schwechten.</td>
+</tr>
+<tr>
+<td>Claude 3.5 Sonnet</td>
+<td>“This puzzle appears to be describing the Haydarpaşa Terminal in Istanbul and its role in the Orient Express railway line.” Right city, right railway line, but wrong station. It gave the architects as Otto Ritter and Helmut Conu</td>
+</tr>
+<tr>
+<td>Perplexity</td>
+<td>“The building mentioned is likely the Reichstag, designed by Paul Wallot and completed in 1894 … While the Reichstag itself wasn’t directly related to the transport system, it symbolizes the period of German unification and modernization that coincided with the development of Berlin’s transport infrastructure.”</td>
+</tr>
+<tr>
+<td>OpenAI ChatGPT</td>
+<td>This description seems to match Helsinki Central Railway Station in Finland … The station was designed by Eliel Saarinen, a Finnish architect who studied abroad and had connections to Germany.”</td>
+</tr>
+</tbody></table>
+<p>Oddly, Claude insisted Haydarpaşa Terminal was the eastern terminus of the Orient Express, but in fact you could only get to it by crossing the Bosphorus from Sirkeci Station.</p><p>Thinking about my own reasoning, I tried to improve the prompt by focusing on the word in The Seint’s clue that made the difference in identifying the correct railway line: “<em>adventure</em>“. The <em>Orient Express</em> definitely conjures up a sense of adventure, featuring in so much of European culture through the 20th century.</p><p>Simply adding the following into each model got them to the correct result:</p><pre><code>PROMPT
+
+This is not correct, but focusing on the word adventure may improve your answer
+</code></pre>
+<p>In each case, prompting on that specific word was enough to get to the right answer, which probably explains why there’s such a lively industry around prompt engineering!</p><p>Anyway, we have <em>August Jasmund</em>, and that is enough to get our hash for Step 8.</p><hr>
+<p>*Featured image credit: The terminus of the Orient Express in Constantinople (Istanbul) around 1918, by Sébah &amp; Joaillier (Public domain). Via *</p>
+            ]]>
+        </content>
+    </entry>
     <entry>
         <title>Hotelrooms and Other Strange Places 2024: #6</title>
         <author>
@@ -78,7 +148,7 @@ print(&quot;MD5 Hash:&quot;, md5_hash)
 </code></pre>
 <hr>
 <p>I pasted this code into a Google Colab, ran it, and it gave me the correct answer:</p><figure class="post__image"><img loading="lazy" src="https://jules-lewis.github.io/blog/media/posts/6/oq24-29-python.jpg" alt="Image description" width="800" height="400"  sizes="(min-width: 920px) 703px, (min-width: 700px) calc(82vw - 35px), calc(100vw - 81px)" srcset="https://jules-lewis.github.io/blog/media/posts/6/responsive/oq24-29-python-xs.jpg 300w ,https://jules-lewis.github.io/blog/media/posts/6/responsive/oq24-29-python-sm.jpg 480w ,https://jules-lewis.github.io/blog/media/posts/6/responsive/oq24-29-python-md.jpg 768w ,https://jules-lewis.github.io/blog/media/posts/6/responsive/oq24-29-python-lg.jpg 1024w"></figure><h3 id="chatgpt-enters-the-ring">ChatGPT enters the ring!</h3>
-<p>Just for kicks, I ran the above prompts in Google Gemini and Claude Sonnet, and got very similar responses. They correctly identified the bird, got the latin name, converted it to lower case, removed the space, then <em>made up</em> a hash. On a second prompt, they both provided working Python code to generate the <em>correct</em> hash. </p><p>Finally, I tried the first prompt in ChatGPT, and noticed something unusual in the response:</p><figure class="post__image"><img src="https://jules-lewis.github.io/blog/media/posts/6/oq24-30-hash.jpg" alt="Image description" width="800" height="384"  sizes="(min-width: 920px) 703px, (min-width: 700px) calc(82vw - 35px), calc(100vw - 81px)" srcset="https://jules-lewis.github.io/blog/media/posts/6/responsive/oq24-30-hash-xs.jpg 300w ,https://jules-lewis.github.io/blog/media/posts/6/responsive/oq24-30-hash-sm.jpg 480w ,https://jules-lewis.github.io/blog/media/posts/6/responsive/oq24-30-hash-md.jpg 768w ,https://jules-lewis.github.io/blog/media/posts/6/responsive/oq24-30-hash-lg.jpg 1024w"></figure><p>This is actually the <strong>correct</strong> hash, so I wondered what would happen if I clicked on the little <code>View analysis</code> link next to the output:</p><figure class="post__image"><img loading="lazy" src="https://jules-lewis.github.io/blog/media/posts/6/oq24-31-clever.jpg" alt="Image description" width="800" height="421"  sizes="(min-width: 920px) 703px, (min-width: 700px) calc(82vw - 35px), calc(100vw - 81px)" srcset="https://jules-lewis.github.io/blog/media/posts/6/responsive/oq24-31-clever-xs.jpg 300w ,https://jules-lewis.github.io/blog/media/posts/6/responsive/oq24-31-clever-sm.jpg 480w ,https://jules-lewis.github.io/blog/media/posts/6/responsive/oq24-31-clever-md.jpg 768w ,https://jules-lewis.github.io/blog/media/posts/6/responsive/oq24-31-clever-lg.jpg 1024w"></figure><p>To me, this is pretty astounding. The model reaches a point where it realises it need to <em>compute</em> a result, writes the necessary code, and executes it in its own context! I thought I had got used to the advances in AI tools, but this genuinely took me by surprise. </p><p>I am now wondering if it might be possible to have a chatbot write code that would solve the entirety of one of these CTFs??</p><p>That might be a job for another day, but in the meantime, we have what we need to open Step 7.</p><hr>
+<p>Just for kicks, I ran the above prompts in Google Gemini and Claude Sonnet, and got very similar responses. They correctly identified the bird, got the latin name, converted it to lower case, removed the space, then <em>made up</em> a hash. On a second prompt, they both provided working Python code to generate the <em>correct</em> hash. </p><p>Finally, I tried the first prompt in ChatGPT, and noticed something unusual in the response:</p><figure class="post__image"><img src="https://jules-lewis.github.io/blog/media/posts/6/oq24-30-hash.jpg" alt="Image description" width="800" height="384"  sizes="(min-width: 920px) 703px, (min-width: 700px) calc(82vw - 35px), calc(100vw - 81px)" srcset="https://jules-lewis.github.io/blog/media/posts/6/responsive/oq24-30-hash-xs.jpg 300w ,https://jules-lewis.github.io/blog/media/posts/6/responsive/oq24-30-hash-sm.jpg 480w ,https://jules-lewis.github.io/blog/media/posts/6/responsive/oq24-30-hash-md.jpg 768w ,https://jules-lewis.github.io/blog/media/posts/6/responsive/oq24-30-hash-lg.jpg 1024w"></figure><p>This is actually the <strong>correct</strong> hash, so I wondered what would happen if I clicked on the little <code>View analysis</code> link next to the output:</p><figure class="post__image"><img loading="lazy" src="https://jules-lewis.github.io/blog/media/posts/6/oq24-31-clever.jpg" alt="Image description" width="800" height="421"  sizes="(min-width: 920px) 703px, (min-width: 700px) calc(82vw - 35px), calc(100vw - 81px)" srcset="https://jules-lewis.github.io/blog/media/posts/6/responsive/oq24-31-clever-xs.jpg 300w ,https://jules-lewis.github.io/blog/media/posts/6/responsive/oq24-31-clever-sm.jpg 480w ,https://jules-lewis.github.io/blog/media/posts/6/responsive/oq24-31-clever-md.jpg 768w ,https://jules-lewis.github.io/blog/media/posts/6/responsive/oq24-31-clever-lg.jpg 1024w"></figure><p>To me, this is pretty astounding. The model reaches a point where it realises it need to <em>compute</em> a result, writes the necessary code, and executes it in its own context! I thought I had got used to the advances in AI tools, but this genuinely took me by surprise. </p><p>I am now wondering if it might be possible to have a chatbot write code that would solve the entirety of one of these CTFs??</p><p>That might be a job for another day, but in the meantime, we have what we need to open <a href="https://jules-lewis.github.io/blog/hotelrooms-and-other-strange-places-2024-7.html">Step 7</a>.</p><hr>
 <p><em>Featured image credit: Author + Copilot, and obviously not what The Seint had in mind!</em></p>
             ]]>
         </content>
